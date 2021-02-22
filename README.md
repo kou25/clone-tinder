@@ -1,1 +1,1 @@
-# clone-tinder
+# MERN project for clone-tinder
