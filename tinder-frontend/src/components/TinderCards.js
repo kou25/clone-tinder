@@ -3,7 +3,7 @@ import TinderCard from 'react-tinder-card'
 import '../assests/css/TinderCards.css'
 import axios from '../axios'
 
-export default function TinderCards() {
+export default function TinderCards({childRefs}) {
     const [people, setPeople] = useState([]);
 
     useEffect(() => {
@@ -24,8 +24,8 @@ export default function TinderCards() {
     return (
         <div className="tinderCards">
             <div className="tinderCards__cardContainer">
-            {people.map((person)=>(
-                <TinderCard
+            {people.map((person, index)=>(
+                <TinderCard ref={childRefs[index]}
                 className="swipe"
                 key={person.name}
                 preventSwipe={['up','down']}
