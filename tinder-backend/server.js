@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import Cors from 'cors'
 import Cards from './dbCards.js'
-
+import Chats from './dbChats.js'
 //App config
 const app = express()
 const port = process.env.PORT || 8001
@@ -37,6 +37,28 @@ app.get('/tinder/card',(req, res)=>{
     const dbCard= req.body; 
 
     Cards.find((err,data) => {
+        if(err)
+            res.status(500).send(err)
+        else
+            res.status(200).send(data)
+    })
+})
+
+app.post('/tinder/chat',(req, res)=>{
+    const dbChat= req.body; 
+
+    Chats.create(dbChat, (err,data) => {
+        if(err)
+            res.status(500).send(err)
+        else
+            res.status(201).send(data)
+    })
+})
+
+app.get('/tinder/chats',(req, res)=>{
+    const dbCard= req.body; 
+
+    Chats.find((err,data) => {
         if(err)
             res.status(500).send(err)
         else
